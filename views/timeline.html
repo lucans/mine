@@ -1,0 +1,58 @@
+<div ng-controller="userCtrl">
+  <div class="user" ng-controller="homeCtrl" ng-init="getContatos()">
+    <div class="row">
+
+  
+      <!-- TAREFAS -->
+      <div class="row col l6 s12 offset-l3">
+
+        <div class="collection blue darken-4 white-text">
+            <li class="collection-header col s10">
+              <h5>            
+                <a href="javascript:void(0)" class="collection-item blue darken-4 white-text"> Dia
+                <i class="fa fa-refresh" ng-click="getContatos()"></i>
+                </a>
+             </h5>
+           </li>
+        </div>
+
+       
+        <div class="card">
+          <div class="card-content">
+             <form class="row">
+              <div class="input-field" ng-init="oContato.tipo = 'pessoal'">
+                 <!--  <datepicker class="col s2" date-format="dd/MM/yyyy">
+                    <input ng-model="oContato.dia" type="text" placeholder="Data">
+                  </datepicker>
+ -->
+                  <input value="" ng-model="oContato.descricao" type="text" placeholder="Digite o contato aqui" class="validate col s12">
+
+                <button ng-show="false" type="submit" class="btn col s12" ng-click="sendContato(oContato)"><i class="fa fa-plus"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div ng-repeat="dia in contatos"> 
+
+          <div class="collection">
+            <a href="javascript:void(0)" class="collection-item blue darken-4 white-text" ng-click="showTarefasDia = !showTarefasDia">{{dia.dia  | date:"dd/MM/yyyy"}}
+            <i class="right fa fa-chevron-up"  ng-show="!showTarefasDia"></i>
+            <i class="right fa fa-chevron-down" ng-show="showTarefasDia"></i>
+            </a>
+
+            <a href="javascript:void(0)" ng-repeat="contato in dia.contatos" class="collection-item {{contato.tema}} white-text" ng-show="!showTarefasDia">
+              {{contato.descricao}}            
+            <span class="blue darken-4 white-text new badge white-text" data-badge-caption="">{{contato.email}}</span></i>
+              <i class="fa fa-times right" ng-click="deleteContato(contato.codcontato)"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+

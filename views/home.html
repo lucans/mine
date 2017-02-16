@@ -1,0 +1,92 @@
+<div ng-controller="userCtrl">
+  <div class="user" ng-controller="homeCtrl" ng-init="getAllHome()">
+    <div class="row">
+
+  
+      <!-- TAREFAS -->
+      <div class="row col l9 s12">
+
+        <div class="collection cyan darken-4 white-text" ng-click="getTarefas('trabalho')">
+            <li class="collection-header col s10">
+              <h5>            
+                <a href="javascript:void(0)" class="collection-item cyan darken-4 white-text"> Tarefas
+                <span class="cyan darken-3 new badge white-text" data-badge-caption="">Pessoal</span></i>
+                </a>
+             </h5>
+           </li>
+        </div>
+
+       
+        <div class="card">
+          <div class="card-content">
+             <form class="row">
+              <div class="input-field" ng-init="oTarefa.tipo = 'pessoal'">
+                  <datepicker class="col s2" date-format="dd/MM/yyyy">
+                    <input value="" ng-model="oTarefa.dia" type="text" placeholder="Data">
+                  </datepicker>
+
+                  <input value="" ng-model="oTarefa.descricao" type="text" placeholder="Descrição" class="validate col s10">
+
+                <button ng-show="false" type="submit" class="btn cyan darken-4 col s12" ng-click="sendTarefa(oTarefa)"><i class="fa fa-plus"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div ng-repeat="dia in tarefas"> 
+          <div class="collection">
+            <a href="javascript:void(0)" class="collection-item cyan darken-4 white-text" ng-click="showTarefasDia = !showTarefasDia">{{dia.dia  | date:"dd/MM/yyyy"}}
+            <i class="right fa fa-chevron-up"  ng-show="!showTarefasDia"></i>
+            <i class="right fa fa-chevron-down" ng-show="showTarefasDia"></i>
+            </a>
+
+            <a href="javascript:void(0)" ng-repeat="tarefa in dia.tarefas" class="collection-item" ng-show="!showTarefasDia" ng-class="{'active' : tarefa.status == 1, 'yellow darken-2' : tarefa.status == 2}">{{tarefa.descricao}}
+              <i ng-click="changeTarefa(tarefa.codtarefa, tarefa.tipo)" ng-show="tarefa.status == 0" class="fa fa-square-o left"></i>
+              <i ng-click="changeTarefa(tarefa.codtarefa, tarefa.tipo)" ng-show="tarefa.status == 1" class="fa fa-check-square left"></i>
+              <i class="fa fa-times right" ng-click="deleteTarefa(tarefa.codtarefa, tarefa.tipo)"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- CUSTOS -->
+      <div class="row col l3 s12">
+
+        <div class="collection red white-text" ng-click="getCustos()">
+           <li class="collection-header col s10">
+              <h5>            
+                  <a href="javascript:void(0)" class="collection-item red white-text"> Custos
+                  <span class="red darken-3 new badge white-text" data-badge-caption="">Pessoal</span></i>
+                  </a>
+              </h5>             
+           </li>
+        </div>
+
+        <div class="">
+          <div class="card">
+            <div class="card-content">
+               <form class="row">             
+                <div class="input-field">
+                  <input value="" ng-model="oCusto.descricao" type="text" placeholder="Descrição" class="validate col s6">
+                  <input value="" ng-model="oCusto.valor" type="text" placeholder="Valor" class="validate col s6">
+                  <button ng-show="false" type="submit" class="btn red col s12" ng-click="sendCusto(oCusto)"><i class="fa fa-plus"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="collection"> 
+          <a href="javascript:void(0)" ng-repeat="custo in custos" class="collection-item">{{custo.descricao}}
+          <span class="red new badge" data-badge-caption="">{{custo.valor | currency: 'R$'}}</span><i class="fa fa-times right" ng-click="deleteCusto(custo.codcusto)"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

@@ -1,0 +1,21 @@
+<div ng-controller="userCtrl">
+
+<style type="text/css">
+  .row .col{
+    padding: 0;
+  }
+</style>
+
+  <div class="row col s8 offset-s2">
+
+    <ul class="collapsible col s1 blue darken-1" ng-repeat="h in intervaloHoras" data-collapsible="accordion">{{h}}</ul> 
+
+    <ul class="collapsible col s{{hora.horas}} m{{hora.horas}}" ng-repeat="hora in horas" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header">{{hora.descricao}}</div>
+        <div class="collapsible-body"><p>{{hora.horas}}</p></div>
+      </li>    
+    </ul> 
+
+  </div>
+</div>

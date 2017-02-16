@@ -1,0 +1,145 @@
+<div ng-controller="userCtrl">
+  <div class="user" ng-controller="homeCtrl" ng-init="getAllWork()">
+    <div class="row">
+
+      <!-- HORAS -->
+      <div class="row col l4 s12">
+
+        <div class="collection green white-text" ng-click="getHoras()">
+          <li class="collection-header col s10">
+              <h5>            
+                <a href="javascript:void(0)" class="collection-item green white-text"> Horas
+                <span class="green darken-3 new badge white-text" data-badge-caption="">Trabalho</span></i>
+                </a>
+              </h5> 
+          </li>
+        </div>
+
+        <div class="">
+          <div class="card">
+            <div class="card-content">
+              <form class="row">
+                  <div class="input-field">
+
+                    <datepicker class="col s3" date-format="dd/MM/yyyy">
+                      <input value="" ng-model="oHora.dia" type="text" placeholder="Data">
+                    </datepicker>
+
+                    <input value="" ng-model="oHora.descricao" type="text" placeholder="Descrição" class="validate col s6">
+                    <input value="" ng-model="oHora.horas" type="text" placeholder="Horas" class="validate col s3">                            
+                  
+                    <button ng-show="false" type="submit" class="btn green col s12" ng-click="sendHora(oHora)"><i class="fa fa-plus"></i></button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>  
+
+        <div class="collection">
+          <a href="javascript:void(0)" ng-repeat="hora in horas" class="collection-item">{{hora.descricao}}
+
+          <span class="green new badge left" data-badge-caption="">{{hora.horas}}    |    {{hora.dia}}</span>
+          <i class="fa fa-times right" ng-click="deleteHora(hora.codhora)"></i>
+
+          </a>
+        </div>
+      </div>      
+
+      <!-- TAREFAS -->
+      <div class="row col l8 s12">
+
+        <div class="collection blue white-text" ng-click="getTarefas('trabalho')">
+            <li class="collection-header col s10">
+              <h5>            
+                <a href="javascript:void(0)" class="collection-item blue white-text"> Tarefas
+                <span class="blue darken-3 new badge white-text" data-badge-caption="">Trabalho</span></i>
+                </a>
+             </h5>
+           </li>
+        </div>
+
+       
+        <div class="card">
+          <div class="card-content">
+             <form class="row">
+              <div class="input-field" ng-init="oTarefa.tipo = 'trabalho'">
+                  <datepicker class="col s2" date-format="dd/MM/yyyy">
+                    <input value="" ng-model="oTarefa.dia" type="text" placeholder="Data">
+                  </datepicker>
+
+                  <input value="" ng-model="oTarefa.descricao" type="text" placeholder="Descrição" class="validate col s10">
+
+                <button ng-show="false" type="submit" class="btn blue col s12" ng-click="sendTarefa(oTarefa)"><i class="fa fa-plus"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div ng-repeat="dia in tarefas"> 
+          <div class="collection">
+            <a href="javascript:void(0)" class="collection-item blue white-text" ng-click="showTarefasDia = !showTarefasDia">{{dia.dia  | date:"dd/MM/yyyy"}}
+            <i class="right fa fa-chevron-up"  ng-show="!showTarefasDia"></i>
+            <i class="right fa fa-chevron-down" ng-show="showTarefasDia"></i>
+            </a>
+
+            <a href="javascript:void(0)" ng-repeat="tarefa in dia.tarefas" class="collection-item" ng-show="!showTarefasDia" ng-class="{'active' : tarefa.status == 1, 'yellow darken-2' : tarefa.status == 2}">{{tarefa.descricao}}
+              <i ng-click="changeTarefa(tarefa.codtarefa, tarefa.tipo)" ng-show="tarefa.status == 0" class="fa fa-square-o left"></i>
+              <i ng-click="changeTarefa(tarefa.codtarefa, tarefa.tipo)" ng-show="tarefa.status == 1" class="fa fa-check-square left"></i>
+              <i class="fa fa-times right" ng-click="deleteTarefa(tarefa.codtarefa, tarefa.tipo)"></i>
+              <i ng-init="ng-show="showTarefasDia"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+       <!-- FOLLOW UP -->
+  <!--     <div class="col l3 s12">
+        <div class="collection brown white-text" ng-click="getHoras()">
+          <li class="collection-header col s10">
+              <h5>            
+                <a href="javascript:void(0)" class="collection-item brown white-text"> Follow Up
+                <span class="brown darken-3 new badge white-text" data-badge-caption="">Trabalho</span></i>
+                </a>
+              </h5> 
+          </li>
+        </div>
+
+        <div class="">
+          <div class="card">
+            <div class="card-content">
+              <form class="row">
+                  <div class="input-field">
+
+                    <datepicker class="col s3" date-format="dd/MM/yyyy">
+                      <input value="" ng-model="oHora.dia" type="text" placeholder="Data">
+                    </datepicker>
+
+                    <input value="" ng-model="oHora.descricao" type="text" placeholder="Descrição" class="validate col s6">
+                    <input value="" ng-model="oHora.horas" type="text" placeholder="Horas" class="validate col s3">                            
+                  
+                    <button ng-show="false" type="submit" class="btn green col s12" ng-click="sendHora(oHora)"><i class="fa fa-plus"></i></button>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>  
+
+
+        <ul class="collapsible popout col s12 m8" data-collapsible="accordion">
+          <li ng-repeat="base in bases | filter:search">
+            <div class="collapsible-header" ng-class="{'blue lighten-4' : base.tipo == 'ERP', 'yellow lighten-4' : base.tipo == 'NFCE', 'green lighten-2' : base.tipo == 'MVC'}">
+
+            <i class="fa left" ng-class="{'fa-building' : base.tipo == 'ERP', 'fa-list-alt' : base.tipo == 'NFE', 'fa-gavel' : base.tipo == 'NFCE', 'fa-laptop' : base.tipo == 'MVC'}" ></i>
+              {{base.nome}}
+            </div>
+
+            <div class="collapsible-body grey darken-2 white-text" ng-bind-html="base.descricao"></div>
+          </li>
+        </ul>
+      </div>
+ -->
+
+    </div>
+  </div>
+</div>
+

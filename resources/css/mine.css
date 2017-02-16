@@ -1,0 +1,142 @@
+/*.nav-wrapper i{
+	font-size: 18px;
+}*/
+body{
+	background-image: url(../img/wall.jpg);
+	background-repeat:repeat;
+}
+
+.card{
+	border: medium none;
+    border-radius: 2px;
+    /*margin-bottom: 1px;*/
+    margin-left: 3px;
+    /*margin-top: 1px;*/
+}
+.card .form-control{
+	border-radius: 0px;
+	padding: 3px;
+}
+
+.card .input-group{
+	padding: 3px;
+}
+
+.card .btn{
+	border-radius: 2px;
+}
+
+.card hr{
+	color: white;
+	width: 80%;
+}
+
+.card h1, h2, h3, h4, h5{
+	width: 100%;
+	padding: 3px;
+	font-weight: bold;
+	letter-spacing: 3px
+}
+
+
+.card-heading{
+	top: 0px;
+	border-bottom: 4px white;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 1px;
+	border-radius: 2px;	
+}
+
+.card-heading b{
+	font-size: 12px;
+}
+
+.card-heading button{
+	margin-bottom: 3px;
+	margin-top: 3px;
+	height: 25px;
+}
+
+
+.card-body{
+	text-align: center;
+	margin: 0.1px;
+	padding-bottom: 	3px;
+}
+
+.card-title{
+	/*border-bottom: 0.5px white solid;*/
+	/*border-top: 0.5px white solid;*/
+}
+
+.card-button{
+	margin-bottom: 	5px;
+}
+
+.card-body .btn{
+	padding: 0px 10px !important
+}
+
+.card-footer{
+	bottom: 0px;
+	width: 100%;
+	position: absolute;
+}
+
+.card-10{
+	height: 350px;
+}
+.card-9{
+	height: 325px;
+}
+.card-8{
+	height: 300px;
+}
+.card-7{
+	height: 275px;
+}
+.card-6{
+	/*height: 250px;*/
+}
+.card-5{
+	height: 225px;
+}
+.card-4{
+	/*height: 200px;*/
+}
+.card-3{
+	height: 175px;
+}
+.card-2{
+	height: 100px;
+	/*width: 165px;*/
+}
+.card-1{
+	/*width: 160px;*/
+	height: 80px;
+}
+
+.tarefas-body{
+	margin:-20px 15px;
+}
+
+.tarefas-body table tr td{
+	margin:0px;
+	padding:0px;
+}
+
+
+
+.todo{
+	width:49%; 
+}
+.doing{
+	width:33%; 
+}
+.done{
+	width:18%; 
+}
+.top a{
+	cursor: default;
+}

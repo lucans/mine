@@ -1,0 +1,43 @@
+<div class="adm" ng-controller="admCtrl" ng-init="getHorasAll()">
+<style type="text/css">
+  body{
+    font-size: 16px;
+  }
+  span {
+    font-size: 14px !important;    
+  }
+</style>
+<div class="row">
+
+  <!-- HORAS -->
+  <div class="row col l3 s6" ng-repeat='user in users_tarefas'>
+
+    <div class="collection {{user.tema}} white-text" ng-click="getHoras()">
+
+      <li class="collection-header col s10">
+        <h5>{{user.email}}<span class="green new badge right" data-badge-caption=""><i class="fa fa-clock-o"></i>{{user.total_horas}}</span></h5>
+
+      </li>
+    </div>
+
+<!--     <div class="">
+      <div class="collection" ng-repeat="hora in user.horas">
+        <a href="javascript:void(0)" class="collection-item">{{hora.descricao}}
+        <span class="{{user.tema}} new badge" data-badge-caption="">{{hora.horas}} - {{hora.dia | date:"dd/MM/yyyy"}}</span>        
+        </a>
+      </div>
+    </div>   -->
+
+    <div class="collection" ng-repeat="hora in user.horas" title="{{hora.descricao}}">
+      <a href="javascript:void(0)" class="collection-item">{{hora.descricao}}
+      <span class="{{user.tema}} new badge" data-badge-caption="">{{hora.horas}} - {{hora.dia | date:"dd/MM/yyyy"}}</span></a>
+    </div>
+
+
+
+  </div>      
+
+</div>
+
+</div>
+
