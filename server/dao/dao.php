@@ -1,4 +1,4 @@
-<?
+<?php
 
 function getContatos($aDados){
 

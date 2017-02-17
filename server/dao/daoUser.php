@@ -1,4 +1,4 @@
-<? 
+<?php 
 function inputUser($aDados){
 
 	echo 'Input User';
