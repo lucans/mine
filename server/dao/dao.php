@@ -96,7 +96,7 @@ function getHorasByUser($cod){
 
 
 function getBases(){
-	$sQuery = "SELECT * FROM bases ORDER BY dtcadastro DESC LIMIT 30";
+	$sQuery = "SELECT * FROM bases ORDER BY dtcadastro DESC";
 	$oStmt = mysql_query($sQuery) or die($sQuery . mysql_error()); 
 	$aResult = array();
 
